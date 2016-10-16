@@ -52,5 +52,7 @@ It will create 3 agents names A1, A2 and A3. For A1, you will see A2 and A3 in t
 Enjoy!! :) 
 
 
-#Mention
-There is no copyright(It sucks big time!) for this code, you can use it as a pet/course project. Feel free to share.
+#Things to remind.
+There is nothing to remind actually. This code has no copyright(It sucks big time!), you can use any part of it as a pet/course project. Feel free to share.
+
+Author: Rafiul Sabbir
