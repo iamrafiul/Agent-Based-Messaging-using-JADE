@@ -55,4 +55,7 @@ Enjoy!! :)
 #Things to remind.
 There is nothing to remind actually. This code has no copyright(It sucks big time!), you can use any part of it as a pet/course project. Feel free to share.
 
-Author: Rafiul Sabbir
+
+Rafiul Sabbir
+Skelleftea, Sweden
+Date: 17/10/2016
