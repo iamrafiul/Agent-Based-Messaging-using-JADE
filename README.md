@@ -1,4 +1,4 @@
-# Agent-Based-Messaging-using-JADE
+# Agent Based Messaging using JADE
 
 Jade is an open source platform for peer-to-peer agent based applications. You can get more details about JADE [here](http://jade.tilab.com/documentation/tutorials-guides/).
 
@@ -53,8 +53,4 @@ Enjoy!! :)
 
 
 #Things to remind.
-There is nothing to remind actually. This code has no copyright(It sucks big time!), you can use any part of it as a pet/course project. Feel free to share.
-
-Regards;
-
-Rafiul Sabbir, Skelleftea, Sweden.
+There is nothing to remind. This code has no copyright, you can use any part of it as a pet/course project. Feel free to share.
