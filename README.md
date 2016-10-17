@@ -6,7 +6,7 @@ This is an agent-based messaging system using JADE. You can create multiple agen
 
 #Project Setup
 
-####Eclipse(tested in Eclipse Neon.1a Release(4.6.1))
+##Eclipse(tested in Eclipse Neon.1a Release(4.6.1))
 
 To run the project in eclipse, import it with the option "Import..." and go to Run -> Run Configuration and select "Java Application" from the left menubar and you will be in the "Menu" tab. Go to "Classpath" tab, click on "User Entries". Then select "Add JARs..." from the right panel and add the jade.jar file which is in the root directory of the project(If you don't find it there, find it in build/ directory). Come back to the "Menu" tab and search "Boot" for the Main.Class. 
 
@@ -29,7 +29,7 @@ Run the project and it will create 3 agents names A1, A2 and A3. For A1, you wil
 Enjoy!! :) 
 
 
-####IntelliJIdea(tested in IntelliJ IDEA 2016.2.4, Build #IU-162.2032.8, built on September 9, 2016)
+##IntelliJIdea(tested in IntelliJ IDEA 2016.2.4, Build #IU-162.2032.8, built on September 9, 2016)
 
 To run the project in IntelliJIdea, import it with the option "Import from existing source" and go to Run -> Edit Configuration and select "Application" from the left menubar and you will be in the "Configuration" tab. From that tab select "Boot (jade.jar)" as the "Main Class", select your JRE.
 
