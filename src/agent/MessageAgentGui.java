@@ -12,7 +12,6 @@ package agent;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +19,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -33,8 +31,8 @@ import javax.swing.JTextField;
 
 import jade.gui.GuiEvent;
 
-public class MesAgentGui extends JFrame {
-	private MesAgent mesAgent;
+public class MessageAgentGui extends JFrame {
+	private MessageAgent messageAgent;
 	String messageType = "";
 	String title = "";
 
@@ -54,14 +52,14 @@ public class MesAgentGui extends JFrame {
 	ArrayList<String> messageTypesList;
 	ArrayList<String> receiversList;
 
-	public MesAgentGui(MesAgent a) {
+	public MessageAgentGui(MessageAgent a) {
 		super(a.getLocalName());
 
-		mesAgent = a;
+		messageAgent = a;
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				mesAgent.doDelete();
+				messageAgent.doDelete();
 			}
 		} );
 
@@ -78,8 +76,8 @@ public class MesAgentGui extends JFrame {
 		// Remove this agents name from the drop-down list of recipients
 		// No point of sending message to thyself :P
 
-		for(String agentName : mesAgent.agentList){
-			if(mesAgent.getLocalName().equals(agentName) || receiversList.contains(agentName))
+		for(String agentName : messageAgent.agentList){
+			if(messageAgent.getLocalName().equals(agentName) || receiversList.contains(agentName))
 				continue;
 			receiversList.add(agentName);
 		}
@@ -149,17 +147,17 @@ public class MesAgentGui extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent ae) {
 				try {
 					String content = messageContent.getText().trim();
-					mesAgent.getFromGui(
+					messageAgent.getFromGui(
 							messageType, receivers.getSelectedItem().toString(), content
 					);
 
 					messageContent.setText("");
 
 					GuiEvent guiEvent = new GuiEvent(this, 1);
-					mesAgent.postGuiEvent(guiEvent); // this postGuiEvent triggers onGuiEvent method in MesAgent which in turn calls the sendMessage
+					messageAgent.postGuiEvent(guiEvent); // this postGuiEvent triggers onGuiEvent method in MessageAgent which in turn calls the sendMessage
 				}
 				catch (Exception e) {
-					JOptionPane.showMessageDialog(MesAgentGui.this, "Invalid values. "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MessageAgentGui.this, "Invalid values. "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		} );
@@ -172,7 +170,7 @@ public class MesAgentGui extends JFrame {
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				mesAgent.doDelete();
+				messageAgent.doDelete();
 			}
 		} );
 	}
