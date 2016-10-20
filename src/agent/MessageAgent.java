@@ -1,16 +1,20 @@
+/**
+* @Author: mdrhri-6
+* @Date:   2016-10-10T00:07:01+02:00
+* @Last modified by:   mdrhri-6
+* @Last modified time: 2016-10-17T16:29:37+02:00
+*/
+
+
+
 package agent;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
-/*These imports are needed to Query AMS for all active agents*/
+
 import jade.domain.AMSService;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -24,8 +28,8 @@ import jade.lang.acl.ACLMessage;
 
 
 
-public class MesAgent extends GuiAgent {
-	private MesAgentGui messageGUI;
+public class MessageAgent extends GuiAgent {
+	private MessageAgentGui messageGUI;
 	private String receiver = "";
 	private String content = "";
 	private String messagePerformative="";
@@ -44,7 +48,7 @@ public class MesAgent extends GuiAgent {
 		refreshActiveAgents();
 
 		// Create and show the GUI
-		messageGUI = new MesAgentGui(this);
+		messageGUI = new MessageAgentGui(this);
 		messageGUI.displayGUI();
 
 
@@ -67,7 +71,7 @@ public class MesAgent extends GuiAgent {
 		addBehaviour(new ReceiveMessage());
 	}
 
-	
+
 	//Agent clean-up
 	protected void takeDown() {
 		// Dispose the GUI if it is there
@@ -81,7 +85,7 @@ public class MesAgent extends GuiAgent {
 		/** This piece of code, to de-register with the DF, is explained
 		 * in the book in section 4.4.2.1, page 73
 		 **/
-		
+
 		// De-register from the yellow pages
 		try {
 			DFService.deregister(this);
@@ -92,10 +96,10 @@ public class MesAgent extends GuiAgent {
 		}
 	}
 
-	//Sending message is an implementation of OneShotBehavior(Send once for one time) 
+	//Sending message is an implementation of OneShotBehavior(Send once for one time)
 	public class SendMessage extends OneShotBehaviour {
-		
-		// Send message from to someone 
+
+		// Send message from to someone
 		public void action() {
 			ACLMessage msg;
 			if(messagePerformative.equals("Propose")){
@@ -109,7 +113,7 @@ public class MesAgent extends GuiAgent {
 			msg.setLanguage("English");
 			msg.setContent(content);
 			send(msg);
-			
+
 			//saveToFile(getAID().getLocalName() +":"+ content);
 			fullConversationText += "\nMe: "+msg.getContent();
 			messageGUI.setMessageTextArea(fullConversationText);
@@ -118,9 +122,9 @@ public class MesAgent extends GuiAgent {
 					"Content of the message is: "+ msg.getContent());
 		}
 	}
-	
+
 	//Receiving message is an implementation of CyclicBehavior(Receive until takeDown() is executed)
-	
+
 	public class ReceiveMessage extends CyclicBehaviour {
 
 		// Variable for the contents of the received Message
@@ -129,7 +133,7 @@ public class MesAgent extends GuiAgent {
 		private String SenderName;
 		private String MyPlan;
 
-		// Receive message and append it in the conversation textArea in the GUI  
+		// Receive message and append it in the conversation textArea in the GUI
 		public void action() {
 			ACLMessage msg = receive();
 			if(msg != null) {
@@ -137,14 +141,14 @@ public class MesAgent extends GuiAgent {
 				messagePerformative = msg.getPerformative(msg.getPerformative());
 				messageContent = msg.getContent();
 				SenderName = msg.getSender().getLocalName();
-				
+
 				// print the message details in console
 				System.out.println("**** " + getAID().getLocalName() + " received a aessage" +"\n"+
 						"Sender name: "+ SenderName+"\n"+
 						"Content of the message: " + messageContent + "\n"+
 						"Message type: " + messagePerformative + "\n");
 				System.out.println("**********************************");
-				
+
 				fullConversationText += "\n"+SenderName+": "+messageContent;
 				messageGUI.setMessageTextArea(fullConversationText);
 
@@ -163,7 +167,7 @@ public class MesAgent extends GuiAgent {
 		} );
 	}
 
-	//predefined function of GuiAgent - see postGuiEvent() in MesAgentGui.java
+	//predefined function of GuiAgent - see postGuiEvent() in MessageAgentGui.java
 	@Override
 	protected void onGuiEvent(GuiEvent arg0) {
 		// TODO Auto-generated method stub

@@ -1,4 +1,14 @@
+/**
+* @Author: mdrhri-6
+* @Date:   2016-10-10T00:07:19+02:00
+* @Last modified by:   mdrhri-6
+* @Last modified time: 2016-10-17T16:29:38+02:00
+*/
+
+
+
 package agent;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -55,18 +65,18 @@ public class MesAgentGui extends JFrame {
 			}
 		} );
 
-		// all the GUI is instantiated here, so that it can be passed 
+		// all the GUI is instantiated here, so that it can be passed
 		// as a parameter to the Agent class grid layout is used
 
 		messageTypesList = new ArrayList();
 		receiversList = new ArrayList();
-		
+
 		// Initializing message type
 		messageTypesList.add("Request");
 		messageTypesList.add("Propose");
 
 		// Remove this agents name from the drop-down list of recipients
-		// No point of sending message to thyself :P 
+		// No point of sending message to thyself :P
 
 		for(String agentName : mesAgent.agentList){
 			if(mesAgent.getLocalName().equals(agentName) || receiversList.contains(agentName))
@@ -76,15 +86,15 @@ public class MesAgentGui extends JFrame {
 
 		messageContent = new JTextField();
 		messageContent.setPreferredSize(new Dimension(400, 30));
-		
+
 		messageViewer = new JTextArea(15, 30);
 //		messageViewer.setPreferredSize(new Dimension(200, 200));
 		messageViewer.setEditable(true);
 		JScrollPane scrollPane = new JScrollPane(messageViewer);
-		
+
 		messageTypes = new JComboBox(messageTypesList.toArray());
 		messageTypes.setPreferredSize(new Dimension(400,20));
-		
+
 		//add actionListener to comboBox when any message type is selected
 		messageTypes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -101,13 +111,13 @@ public class MesAgentGui extends JFrame {
 
 		messageTypeLable  = new JLabel("Message Type: ");
 		messageTypeLable.setPreferredSize(new Dimension(400, 20));
-		
+
 		receiverLabel = new JLabel("Receivers: ");
 		receiverLabel.setPreferredSize(new Dimension(400, 20));
-		
+
 		contentTFLabel = new JLabel("Content: ");
 		contentTFLabel.setPreferredSize(new Dimension(400, 20));
-		
+
 		messagesTALabel = new JLabel("Full Conversation: ");
 		messagesTALabel.setPreferredSize(new Dimension(400, 20));
 
@@ -119,7 +129,7 @@ public class MesAgentGui extends JFrame {
 //		statusLabel.setSize(350,100);
 
 		controlPanel = new JPanel();
-		
+
 //		GridLayout grid = new GridLayout(10,20);
 //
 //		controlPanel.setLayout(grid);
@@ -144,7 +154,7 @@ public class MesAgentGui extends JFrame {
 					);
 
 					messageContent.setText("");
-					
+
 					GuiEvent guiEvent = new GuiEvent(this, 1);
 					mesAgent.postGuiEvent(guiEvent); // this postGuiEvent triggers onGuiEvent method in MesAgent which in turn calls the sendMessage
 				}
@@ -153,9 +163,9 @@ public class MesAgentGui extends JFrame {
 				}
 			}
 		} );
-		
+
 		controlPanel.add(sendMessageBtn);
-		
+
 		Container contentPane = getContentPane();
 		contentPane.setPreferredSize(new Dimension(400, 500));
 		getContentPane().add(controlPanel, BorderLayout.CENTER);
@@ -166,7 +176,7 @@ public class MesAgentGui extends JFrame {
 			}
 		} );
 	}
-	
+
 	public void setMessageTextArea(String text){
 		messageViewer.setText(text);
 	}
